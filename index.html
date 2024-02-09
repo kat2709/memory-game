@@ -13,13 +13,75 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
-      <h1>Memory</h1>
-      <h2>Game</h2>
-    </header>
+    <div class="setting-container">
+      <h3>Choose level</h3>
+      <div class="level-box">
+        <!-- baby -->
+        <div class="level level-active">
+          <div class="first-level-img level-img"></div>
+          <div class="title-stars">
+            <h4>Baby</h4>
+            <div class="stars-box">
+              <div class="star-empty"></div>
+              <div class="star-empty"></div>
+              <div class="star-empty"></div>
+              <div class="star"></div>
+              <div class="star"></div>
+            </div>
+          </div>
+        </div>
+        <!-- schoolboy -->
+        <div class="level">
+          <div class="second-level-img level-img"></div>
+          <div class="title-stars">
+            <h4>Schoolboy</h4>
+            <div class="stars-box">
+              <div class="star-empty"></div>
+              <div class="star-empty"></div>
+              <div class="star"></div>
+              <div class="star"></div>
+              <div class="star"></div>
+            </div>
+          </div>
+        </div>
+        <!-- student -->
+        <div class="level">
+          <div class="third-level-img level-img"></div>
+          <div class="title-stars">
+            <h4>Student</h4>
+            <div class="stars-box">
+              <div class="star-empty"></div>
+              <div class="star"></div>
+              <div class="star"></div>
+              <div class="star"></div>
+              <div class="star"></div>
+            </div>
+          </div>
+        </div>
+        <!-- master -->
+        <div class="level">
+          <div class="fourth-level-img level-img"></div>
+          <div class="title-stars">
+            <h4>Master</h4>
+            <div class="stars-box">
+              <div class="star"></div>
+              <div class="star"></div>
+              <div class="star"></div>
+              <div class="star"></div>
+              <div class="star"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <main>
+      <div class="title">
+        <h1>Memory</h1>
+        <h2>Game</h2>
+      </div>
       <div class="board"></div>
     </main>
+    <div class="setting-container"></div>
     <script src="./app.js"></script>
   </body>
 </html>
