@@ -1,107 +1,35 @@
-const cards = [
-  {
-    name: "candy",
-    img: "./assets/cards/candy_cat.jpg",
-  },
-  {
-    name: "bug",
-    img: "./assets/cards/cat_bug.jpg",
-  },
-  {
-    name: "shark",
-    img: "./assets/cards/cat_shark.jpg",
-  },
-  {
-    name: "computer",
-    img: "./assets/cards/computer_cat.jpg",
-  },
-  {
-    name: "dress",
-    img: "./assets/cards/dress_cat.jpg",
-  },
-  {
-    name: "grey",
-    img: "./assets/cards/grey_cat.jpg",
-  },
-  {
-    name: "look",
-    img: "./assets/cards/look_cat.jpg",
-  },
-  {
-    name: "travel",
-    img: "./assets/cards/travel_cat.jpg",
-  },
-  {
-    name: "upside",
-    img: "./assets/cards/upside_down_cat.jpg",
-  },
-  {
-    name: "bunny",
-    img: "./assets/cards/cat_bunny.jpg",
-  },
-  {
-    name: "candy",
-    img: "./assets/cards/candy_cat.jpg",
-  },
-  {
-    name: "bug",
-    img: "./assets/cards/cat_bug.jpg",
-  },
-  {
-    name: "shark",
-    img: "./assets/cards/cat_shark.jpg",
-  },
-  {
-    name: "computer",
-    img: "./assets/cards/computer_cat.jpg",
-  },
-  {
-    name: "dress",
-    img: "./assets/cards/dress_cat.jpg",
-  },
-  {
-    name: "grey",
-    img: "./assets/cards/grey_cat.jpg",
-  },
-  {
-    name: "look",
-    img: "./assets/cards/look_cat.jpg",
-  },
-  {
-    name: "travel",
-    img: "./assets/cards/travel_cat.jpg",
-  },
-  {
-    name: "upside",
-    img: "./assets/cards/upside_down_cat.jpg",
-  },
-  {
-    name: "bunny",
-    img: "./assets/cards/cat_bunny.jpg",
-  },
-];
+import { cardsFirstLevelArr } from "./cards_first_level.js";
+import { cardsSecondLevelArr } from "./cards_second_level.js";
+import { cardsThirdLevelArr } from "./cards_third_level.js";
+import { cardsFourthLevelArr } from "./cards_fourth_level.js";
 
-
-let sortArr=[];
+let sortArr = [];
+let style = "";
 let count = 0;
 let idArr = [];
 let chosenCardArr = [];
-
 const board = document.querySelector(".board");
 
+function main() {
+  sortArr = cardsFirstLevelArr;
+  style = "card-first-level";
+  createBoard();
+}
+
+main();
+
 function createBoard() {
-  
-  for (i = 0; i < cards.length; i++) {
-    sortArr=cards.sort(() => 0.5 - Math.random());
+  console.log(sortArr);
+  sortArr.sort(() => 0.5 - Math.random());
+  for (let i = 0; i < sortArr.length; i++) {
     const card = document.createElement("div");
     card.classList.add("card");
+    card.classList.add(`${style}`);
     card.setAttribute("id", i);
     board.appendChild(card);
     card.addEventListener("click", clickCard);
   }
 }
-
-createBoard();
 
 function clickCard(e) {
   const id = e.target.id;
@@ -109,17 +37,13 @@ function clickCard(e) {
     idArr.push(id);
     chosenCardArr.push(sortArr[id].name);
   }
-
   if (idArr.length === 2) {
     const cards = document.querySelectorAll(".card");
     cards.forEach((card) => card.removeEventListener("click", clickCard));
     checkCards();
   }
-
   const card = document.getElementById(id);
-  console.log(sortArr[id].img);
-  card.style.backgroundImage = `url(${cards[id].img})`;
-  console.log(idArr);
+  card.style.backgroundImage = `url(${sortArr[id].img})`;
 }
 
 function checkCards() {
@@ -127,10 +51,8 @@ function checkCards() {
     console.log(count);
     let firstCard = document.getElementById(idArr[0]);
     let secondCard = document.getElementById(idArr[1]);
-
     firstCard.classList.add("hidden");
     secondCard.classList.add("hidden");
-
     chosenCardArr = [];
     idArr = [];
     setTimeout(clickCardAgain, 500);
@@ -166,8 +88,59 @@ function checkWin(count) {
 
 function youWin() {
   alert("You Win!!!!");
-  const board = document.querySelector(".board");
   board.innerHTML = "";
   count = 0;
   createBoard();
+}
+
+const firstLevelBtn = document.getElementById("baby");
+firstLevelBtn.addEventListener("click", () => {
+  removeStyles();
+  firstLevelBtn.classList.add("level-active");
+  sortArr = cardsFirstLevelArr;
+  style = "card-first-level";
+  board.innerHTML = "";
+  count = 0;
+  createBoard();
+});
+
+const secondLevelBtn = document.getElementById("pupil");
+secondLevelBtn.addEventListener("click", () => {
+  removeStyles();
+  secondLevelBtn.classList.add("level-active");
+  const board = document.querySelector(".board");
+  board.innerHTML = "";
+  sortArr = cardsSecondLevelArr;
+  style = "card-second-level";
+  count = 0;
+  createBoard();
+});
+
+const thirdLevelBtn = document.getElementById("student");
+thirdLevelBtn.addEventListener("click", () => {
+  removeStyles();
+  thirdLevelBtn.classList.add("level-active");
+  const board = document.querySelector(".board");
+  board.innerHTML = "";
+  sortArr = cardsThirdLevelArr;
+  style = "card-third-level";
+  count = 0;
+  createBoard();
+});
+
+const fourthLevelBtn = document.getElementById("master");
+fourthLevelBtn.addEventListener("click", () => {
+  removeStyles();
+  fourthLevelBtn.classList.add("level-active");
+  const board = document.querySelector(".board");
+  board.innerHTML = "";
+  sortArr = cardsFourthLevelArr;
+  style = "card-fourth-level";
+  count = 0;
+  createBoard();
+});
+
+function removeStyles() {
+  const levelBtns = document.querySelectorAll(".level");
+  levelBtns.forEach((btn) => btn.classList.remove("level-active"));
 }

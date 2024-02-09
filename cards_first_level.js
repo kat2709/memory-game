@@ -1,4 +1,4 @@
-const cards = [
+export const cardsFirstLevelArr = [
   {
     name: "candy",
     img: "./assets/cards/candy_cat.jpg",
@@ -18,14 +18,6 @@ const cards = [
   {
     name: "dress",
     img: "./assets/cards/dress_cat.jpg",
-  },
-  {
-    name: "grey",
-    img: "./assets/cards/grey_cat.jpg",
-  },
-  {
-    name: "look",
-    img: "./assets/cards/look_cat.jpg",
   },
   {
     name: "travel",
@@ -58,14 +50,6 @@ const cards = [
   {
     name: "dress",
     img: "./assets/cards/dress_cat.jpg",
-  },
-  {
-    name: "grey",
-    img: "./assets/cards/grey_cat.jpg",
-  },
-  {
-    name: "look",
-    img: "./assets/cards/look_cat.jpg",
   },
   {
     name: "travel",
