@@ -252,8 +252,8 @@ function clickCard(e) {
   }
 
   if (idArr.length === 2) {
-    // const cards = document.querySelectorAll(".card");
-    // // cards.forEach((card) => card.removeEventListener("click", clickCard));
+    const cards = document.querySelectorAll(".card");
+    cards.forEach((card) => card.removeEventListener("click", clickCard));
     checkCards();
   }
 
@@ -274,12 +274,12 @@ function checkCards() {
 
     chosenCardArr = [];
     idArr = [];
+    setTimeout(clickCardAgain, 500);
   } else {
     setTimeout(closeCard, 500);
+    setTimeout(clickCardAgain, 500);
   }
 }
-
-console.log(cards);
 
 function closeCard() {
   const firstCard = document.getElementById(`${idArr[0]}`);
@@ -288,4 +288,9 @@ function closeCard() {
   secondCard.style.backgroundImage = `url(./assets/cards/blank.jpg)`;
   chosenCardArr = [];
   idArr = [];
+}
+
+function clickCardAgain() {
+  const cards = document.querySelectorAll(".card");
+  cards.forEach((card) => card.addEventListener("click", clickCard));
 }

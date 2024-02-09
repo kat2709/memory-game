@@ -60,6 +60,6 @@ main {
 }
 
 .hidden {
-  cursor: initial;
+  pointer-events: none;
   opacity: 0;
 }
