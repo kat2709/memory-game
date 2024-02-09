@@ -9,6 +9,8 @@ let count = 0;
 let idArr = [];
 let chosenCardArr = [];
 const board = document.querySelector(".board");
+const moveCounter = document.getElementById("moves");
+let moves = 0;
 
 function main() {
   sortArr = cardsFirstLevelArr;
@@ -19,7 +21,6 @@ function main() {
 main();
 
 function createBoard() {
-  console.log(sortArr);
   sortArr.sort(() => 0.5 - Math.random());
   for (let i = 0; i < sortArr.length; i++) {
     const card = document.createElement("div");
@@ -29,6 +30,9 @@ function createBoard() {
     board.appendChild(card);
     card.addEventListener("click", clickCard);
   }
+  moves = 0;
+  moveCounter.innerHTML = moves;
+  count = 0;
 }
 
 function clickCard(e) {
@@ -38,6 +42,8 @@ function clickCard(e) {
     chosenCardArr.push(sortArr[id].name);
   }
   if (idArr.length === 2) {
+    moves++;
+    moveCounter.innerHTML = moves;
     const cards = document.querySelectorAll(".card");
     cards.forEach((card) => card.removeEventListener("click", clickCard));
     checkCards();
@@ -48,7 +54,6 @@ function clickCard(e) {
 
 function checkCards() {
   if (chosenCardArr[0] === chosenCardArr[1]) {
-    console.log(count);
     let firstCard = document.getElementById(idArr[0]);
     let secondCard = document.getElementById(idArr[1]);
     firstCard.classList.add("hidden");
@@ -89,7 +94,6 @@ function checkWin(count) {
 function youWin() {
   alert("You Win!!!!");
   board.innerHTML = "";
-  count = 0;
   createBoard();
 }
 
@@ -100,7 +104,6 @@ firstLevelBtn.addEventListener("click", () => {
   sortArr = cardsFirstLevelArr;
   style = "card-first-level";
   board.innerHTML = "";
-  count = 0;
   createBoard();
 });
 
@@ -112,7 +115,6 @@ secondLevelBtn.addEventListener("click", () => {
   board.innerHTML = "";
   sortArr = cardsSecondLevelArr;
   style = "card-second-level";
-  count = 0;
   createBoard();
 });
 
@@ -124,7 +126,6 @@ thirdLevelBtn.addEventListener("click", () => {
   board.innerHTML = "";
   sortArr = cardsThirdLevelArr;
   style = "card-third-level";
-  count = 0;
   createBoard();
 });
 
@@ -136,7 +137,12 @@ fourthLevelBtn.addEventListener("click", () => {
   board.innerHTML = "";
   sortArr = cardsFourthLevelArr;
   style = "card-fourth-level";
-  count = 0;
+  createBoard();
+});
+
+const resetBtn = document.querySelector(".reset-game");
+resetBtn.addEventListener("click", () => {
+  board.innerHTML = "";
   createBoard();
 });
 
