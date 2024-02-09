@@ -20,6 +20,62 @@ function main() {
 
 main();
 
+// addEventListeners
+function clickCardAgain() {
+  const cards = document.querySelectorAll(".card");
+  cards.forEach((card) => card.addEventListener("click", clickCard));
+}
+
+const firstLevelBtn = document.getElementById("baby");
+firstLevelBtn.addEventListener("click", () => {
+  removeStyles();
+  firstLevelBtn.classList.add("level-active");
+  sortArr = cardsFirstLevelArr;
+  style = "card-first-level";
+  board.innerHTML = "";
+  createBoard();
+});
+
+const secondLevelBtn = document.getElementById("pupil");
+secondLevelBtn.addEventListener("click", () => {
+  removeStyles();
+  secondLevelBtn.classList.add("level-active");
+  const board = document.querySelector(".board");
+  board.innerHTML = "";
+  sortArr = cardsSecondLevelArr;
+  style = "card-second-level";
+  createBoard();
+});
+
+const thirdLevelBtn = document.getElementById("student");
+thirdLevelBtn.addEventListener("click", () => {
+  removeStyles();
+  thirdLevelBtn.classList.add("level-active");
+  const board = document.querySelector(".board");
+  board.innerHTML = "";
+  sortArr = cardsThirdLevelArr;
+  style = "card-third-level";
+  createBoard();
+});
+
+const fourthLevelBtn = document.getElementById("master");
+fourthLevelBtn.addEventListener("click", () => {
+  removeStyles();
+  fourthLevelBtn.classList.add("level-active");
+  const board = document.querySelector(".board");
+  board.innerHTML = "";
+  sortArr = cardsFourthLevelArr;
+  style = "card-fourth-level";
+  createBoard();
+});
+
+const resetBtn = document.querySelector(".reset-game");
+resetBtn.addEventListener("click", () => {
+  board.innerHTML = "";
+  createBoard();
+});
+
+// UTILS
 function createBoard() {
   sortArr.sort(() => 0.5 - Math.random());
   for (let i = 0; i < sortArr.length; i++) {
@@ -80,11 +136,6 @@ function closeCard() {
   idArr = [];
 }
 
-function clickCardAgain() {
-  const cards = document.querySelectorAll(".card");
-  cards.forEach((card) => card.addEventListener("click", clickCard));
-}
-
 function checkWin(count) {
   if (count === sortArr.length / 2) {
     return true;
@@ -96,55 +147,6 @@ function youWin() {
   board.innerHTML = "";
   createBoard();
 }
-
-const firstLevelBtn = document.getElementById("baby");
-firstLevelBtn.addEventListener("click", () => {
-  removeStyles();
-  firstLevelBtn.classList.add("level-active");
-  sortArr = cardsFirstLevelArr;
-  style = "card-first-level";
-  board.innerHTML = "";
-  createBoard();
-});
-
-const secondLevelBtn = document.getElementById("pupil");
-secondLevelBtn.addEventListener("click", () => {
-  removeStyles();
-  secondLevelBtn.classList.add("level-active");
-  const board = document.querySelector(".board");
-  board.innerHTML = "";
-  sortArr = cardsSecondLevelArr;
-  style = "card-second-level";
-  createBoard();
-});
-
-const thirdLevelBtn = document.getElementById("student");
-thirdLevelBtn.addEventListener("click", () => {
-  removeStyles();
-  thirdLevelBtn.classList.add("level-active");
-  const board = document.querySelector(".board");
-  board.innerHTML = "";
-  sortArr = cardsThirdLevelArr;
-  style = "card-third-level";
-  createBoard();
-});
-
-const fourthLevelBtn = document.getElementById("master");
-fourthLevelBtn.addEventListener("click", () => {
-  removeStyles();
-  fourthLevelBtn.classList.add("level-active");
-  const board = document.querySelector(".board");
-  board.innerHTML = "";
-  sortArr = cardsFourthLevelArr;
-  style = "card-fourth-level";
-  createBoard();
-});
-
-const resetBtn = document.querySelector(".reset-game");
-resetBtn.addEventListener("click", () => {
-  board.innerHTML = "";
-  createBoard();
-});
 
 function removeStyles() {
   const levelBtns = document.querySelectorAll(".level");
