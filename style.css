@@ -88,6 +88,7 @@ main {
   opacity: 0;
 }
 
+.level-container,
 .setting-container {
   background: rgba(255, 255, 255, 0.5);
   padding: 30px 10px;
@@ -311,6 +312,11 @@ h5 {
   color: rgb(73, 73, 151);
 }
 
+.menu-icon,
+.setting-icon {
+  display: none;
+}
+
 @media (hover: hover) {
   .reset-game:hover,
   .music:hover,
@@ -322,5 +328,129 @@ h5 {
 
   .level:hover {
     outline: 3px solid rgb(161, 161, 207);
+  }
+}
+
+@media (max-width: 1220px) {
+  body {
+    overflow-x: hidden;
+    justify-content: center;
+  }
+
+  .level-container {
+    width: 0px;
+    display: none;
+  }
+
+  .setting-container {
+    width: 0px;
+    display: none;
+  }
+
+  .main {
+    position: relative;
+  }
+
+  .icon-box {
+    padding: 0px 10px;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 640px;
+    top: 85px;
+    cursor: pointer;
+  }
+
+  .menu-icon {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    background-image: url(./assets/menu.svg);
+    background-size: contain;
+    cursor: pointer;
+  }
+
+  .setting-icon {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    background-image: url(./assets/setting.svg);
+    background-size: contain;
+    color: #494997;
+  }
+
+  .show-level-container {
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    left: 0px;
+    width: 250px;
+    position: absolute;
+    z-index: 10;
+  }
+
+  .show-setting-container {
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    right: 0px;
+    width: 250px;
+    position: absolute;
+    z-index: 10;
+  }
+
+  .hidden-icon {
+    display: none;
+  }
+
+  .block {
+    pointer-events: none;
+  }
+}
+
+@media (max-width: 670px) {
+  h1 {
+    font-size: 40px;
+  }
+  h2 {
+    margin-top: -17px;
+    font-size: 20px;
+  }
+  .icon-box {
+    top: 50px;
+    width: 330px;
+  }
+  .board {
+    border: none;
+    outline: 5px solid rgb(161, 161, 207);
+    padding: 5px;
+    width: 340px;
+    height: 520px;
+  }
+  .card-first-level {
+    width: 80px;
+    height: 126px;
+  }
+  .level-box {
+    margin-top: 0px;
+  }
+  .level-container {
+    padding: 20px 10px;
+  }
+  .setting-container {
+    padding: 20px 10px;
+  }
+  .setting-box {
+    margin-top: 10px;
+  }
+  .card-second-level {
+    width: 80px;
+    height: 99px;
+  }
+  .card-third-level {
+    width: 64px;
+    height: 82px;
+  }
+  .card-fourth-level {
+    width: 44px;
+    height: 60px;
   }
 }
