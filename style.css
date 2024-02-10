@@ -220,7 +220,6 @@ h4 {
   justify-content: center;
   width: 200px;
   margin-top: 20px;
-  /* pointer-events: none; */
 }
 
 .span-box {
@@ -233,7 +232,7 @@ h4 {
 }
 
 .score-table {
-  width: 230px;
+  width: 200px;
   height: 290px;
   margin-top: 20px;
   color: #c00022;
@@ -245,4 +244,89 @@ h4 {
   text-decoration: none;
   text-transform: capitalize;
   font-size: 16px;
+}
+
+.music {
+  font-family: "Protest Revolution", sans-serif;
+  /* font-family: "Dancing Script", cursive; */
+  border: none;
+  margin-top: 20px;
+  color: rgb(73, 73, 151);
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  /* outline: 3px solid #c00022; */
+}
+
+.musical-note {
+  margin-left: 5px;
+  background-size: contain;
+  height: 30px;
+  width: 30px;
+  background-image: url(./assets/note.svg);
+  background-repeat: no-repeat;
+}
+
+.active-note {
+  background-image: url(./assets/pink_note.svg);
+}
+
+.music-active {
+  outline: 3px solid #c00022;
+  color: #c00022;
+}
+
+.music:hover {
+  background: rgba(171, 190, 222, 0.5);
+  color: #c00022;
+  outline: 3px solid #c00022;
+}
+
+.end-game-picture {
+  background-image: url(./assets/cards/funny_cat.jpg);
+  margin: 10px auto;
+  height: 130px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 130px;
+}
+
+.end-game-modal {
+  border: none;
+  outline: 5px solid rgb(73, 73, 151);
+  background-color: white;
+  text-align: center;
+  border-radius: 20px;
+  padding: 20px 30px;
+  width: 400px;
+  transform: translateX(-50%) translateY(-50%);
+  top: 50%;
+  left: 50%;
+}
+
+.new-game {
+  width: 200px;
+  cursor: pointer;
+  margin: 30px auto 0px;
+}
+
+.end-game-title {
+  margin-top: 0px;
+  font-size: 40px;
+  color: #c00022;
+  font-family: "Dancing Script", cursive;
+}
+
+h5 {
+  font-size: 16px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Protest Revolution", sans-serif;
+  color: rgb(73, 73, 151);
+}
+
+.new-game:hover {
+  background: rgba(171, 190, 222, 0.5);
+  color: #c00022;
+  outline: 3px solid #c00022;
 }

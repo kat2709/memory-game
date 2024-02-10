@@ -12,6 +12,7 @@ let scoreArray = [];
 const board = document.querySelector(".board");
 const moveCounter = document.getElementById("moves");
 const bestResults = document.querySelector(".results");
+const audio = document.querySelector("#audio");
 let moves = 0;
 
 let savedScore = localStorage.getItem("scoreArray");
@@ -84,6 +85,39 @@ resetBtn.addEventListener("click", () => {
   createBoard();
 });
 
+const musicBtn = document.getElementById("music-btn");
+musicBtn.addEventListener("click", () => {
+  const note = document.getElementById("note-music");
+  musicBtn.classList.toggle("music-active");
+  if (musicBtn.classList.contains("music-active")) {
+    audio.play();
+    note.classList.add("active-note");
+  } else {
+    audio.pause();
+    note.classList.remove("active-note");
+  }
+});
+
+const soundBtn = document.getElementById("sound-btn");
+soundBtn.addEventListener("click", () => {
+  soundBtn.classList.toggle("music-active");
+  const note = document.getElementById("note-sounds");
+  if (soundBtn.classList.contains("music-active")) {
+    note.classList.add("active-note");
+  } else {
+    note.classList.remove("active-note");
+  }
+  // todo
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    const endGameWindow = document.querySelector(".end-game-modal");
+    endGameWindow.close();
+    document.body.removeChild(endGameWindow);
+  }
+});
+
 // UTILS
 function createBoard() {
   sortArr.sort(() => 0.5 - Math.random());
@@ -119,6 +153,12 @@ function clickCard(e) {
 
 function checkCards() {
   if (chosenCardArr[0] === chosenCardArr[1]) {
+    const soundBtn = document.getElementById("sound-btn");
+    if (soundBtn.classList.contains("music-active")) {
+      const sound = document.createElement("audio");
+      sound.src = "./assets/sounds/meow.mp3";
+      sound.play();
+    }
     let firstCard = document.getElementById(idArr[0]);
     let secondCard = document.getElementById(idArr[1]);
     firstCard.classList.add("hidden");
@@ -153,7 +193,6 @@ function checkWin(count) {
 
 function youWin() {
   const activeBtn = document.querySelector(".level-active");
-  console.log(activeBtn.id);
   const scoreObj = {};
   scoreObj.level = activeBtn.id;
   scoreObj.moves = moves;
@@ -168,7 +207,7 @@ function youWin() {
 
   localStorage.setItem("scoreArray", JSON.stringify(scoreArray));
 
-  alert("You Win!!!!");
+  createEndGameWindow();
   board.innerHTML = "";
   createBoard();
   createScoreTable();
@@ -189,18 +228,48 @@ function createScoreTable() {
 
   for (let i = 0; i < sortedArr.length; i++) {
     let result = document.createElement("div");
-    result.innerHTML = `${i + 1}. You've solved the level: "${
-      sortedArr[i].level
-    }" in
+    result.innerHTML = `${i + 1}. the level: "${sortedArr[i].level}" in
     ${sortedArr[i].moves} moves!`;
     bestResults.appendChild(result);
   }
 }
 
 function addMusic() {
-  const audio = document.createElement("audio");
-  audio.src = "./assets/sounds/memory_music.mp3";
-  // audio.loop = true;
-  // audio.autoplay = true;
-  audio.play();
+  audio.src = "./assets/sounds/background.mp3";
+  audio.loop = true;
+  audio.autoplay = true;
+}
+
+function createEndGameWindow() {
+  const endGameWindow = document.createElement("dialog");
+  endGameWindow.classList.add("end-game-modal");
+  document.body.appendChild(endGameWindow);
+
+  const title = document.createElement("h2");
+  title.classList.add("end-game-title");
+  title.innerHTML = "Congratulations!";
+  endGameWindow.appendChild(title);
+
+  const picture = document.createElement("div");
+  picture.classList.add("end-game-picture");
+  endGameWindow.appendChild(picture);
+
+  const gameResultTitle = document.createElement("h5");
+  const level = document.querySelector(".level-active");
+  const idLevel = level.id;
+  gameResultTitle.innerHTML = `You've solved game level: "${idLevel}" in ${moves} moves!`;
+  endGameWindow.appendChild(gameResultTitle);
+
+  const newGameBtn = document.createElement("div");
+  newGameBtn.classList.add("basic");
+  newGameBtn.classList.add("new-game");
+  newGameBtn.innerHTML = "New game";
+  endGameWindow.appendChild(newGameBtn);
+
+  endGameWindow.showModal();
+
+  newGameBtn.addEventListener("click", () => {
+    endGameWindow.close();
+    document.body.removeChild(endGameWindow);
+  });
 }
