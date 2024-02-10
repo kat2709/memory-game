@@ -12,20 +12,24 @@ let scoreArray = [];
 const board = document.querySelector(".board");
 const moveCounter = document.getElementById("moves");
 const bestResults = document.querySelector(".results");
+const scoreTable = document.querySelector(".score-table");
 const audio = document.querySelector("#audio");
 let moves = 0;
 
 let savedScore = localStorage.getItem("scoreArray");
 if (savedScore) {
   scoreArray = JSON.parse(savedScore);
+  scoreTable.classList.add("score-table-open");
 }
 
 function main() {
   sortArr = cardsFirstLevelArr;
   style = "card-first-level";
   createBoard();
-  createScoreTable();
   addMusic();
+  if (savedScore) {
+    createScoreTable();
+  }
 }
 
 main();
@@ -192,6 +196,9 @@ function checkWin(count) {
 }
 
 function youWin() {
+  const sound = document.createElement("audio");
+  sound.src = "./assets/sounds/win_sound.mp3";
+  sound.play();
   const activeBtn = document.querySelector(".level-active");
   const scoreObj = {};
   scoreObj.level = activeBtn.id;
@@ -206,7 +213,6 @@ function youWin() {
   }
 
   localStorage.setItem("scoreArray", JSON.stringify(scoreArray));
-
   createEndGameWindow();
   board.innerHTML = "";
   createBoard();
@@ -219,6 +225,7 @@ function removeStyles() {
 }
 
 function createScoreTable() {
+  scoreTable.classList.add("score-table-open");
   bestResults.innerHTML = "";
   const arr = JSON.parse(localStorage.getItem("scoreArray"));
   const key = "moves";
