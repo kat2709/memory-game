@@ -24,6 +24,7 @@ function main() {
   style = "card-first-level";
   createBoard();
   createScoreTable();
+  addMusic();
 }
 
 main();
@@ -194,4 +195,12 @@ function createScoreTable() {
     ${sortedArr[i].moves} moves!`;
     bestResults.appendChild(result);
   }
+}
+
+function addMusic() {
+  const audio = document.createElement("audio");
+  audio.src = "./assets/sounds/memory_music.mp3";
+  // audio.loop = true;
+  // audio.autoplay = true;
+  audio.play();
 }
