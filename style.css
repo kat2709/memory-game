@@ -91,7 +91,7 @@ main {
 .setting-container {
   background: rgba(255, 255, 255, 0.5);
   padding: 30px 10px;
-  width: 290px;
+  width: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -230,4 +230,19 @@ h4 {
 #moves {
   font-size: 25px;
   color: #c00022;
+}
+
+.score-table {
+  width: 230px;
+  height: 290px;
+  margin-top: 20px;
+  color: #c00022;
+}
+
+.results div {
+  margin-top: 10px;
+  color: rgb(73, 73, 151);
+  text-decoration: none;
+  text-transform: capitalize;
+  font-size: 16px;
 }

@@ -8,14 +8,22 @@ let style = "";
 let count = 0;
 let idArr = [];
 let chosenCardArr = [];
+let scoreArray = [];
 const board = document.querySelector(".board");
 const moveCounter = document.getElementById("moves");
+const bestResults = document.querySelector(".results");
 let moves = 0;
+
+let savedScore = localStorage.getItem("scoreArray");
+if (savedScore) {
+  scoreArray = JSON.parse(savedScore);
+}
 
 function main() {
   sortArr = cardsFirstLevelArr;
   style = "card-first-level";
   createBoard();
+  createScoreTable();
 }
 
 main();
@@ -36,7 +44,7 @@ firstLevelBtn.addEventListener("click", () => {
   createBoard();
 });
 
-const secondLevelBtn = document.getElementById("pupil");
+const secondLevelBtn = document.getElementById("schoolguy");
 secondLevelBtn.addEventListener("click", () => {
   removeStyles();
   secondLevelBtn.classList.add("level-active");
@@ -143,12 +151,47 @@ function checkWin(count) {
 }
 
 function youWin() {
+  const activeBtn = document.querySelector(".level-active");
+  console.log(activeBtn.id);
+  const scoreObj = {};
+  scoreObj.level = activeBtn.id;
+  scoreObj.moves = moves;
+  console.log(scoreObj);
+
+  if (scoreArray.length < 5) {
+    scoreArray.push(scoreObj);
+  } else {
+    scoreArray.push(scoreObj);
+    scoreArray = scoreArray.slice(1);
+  }
+
+  localStorage.setItem("scoreArray", JSON.stringify(scoreArray));
+
   alert("You Win!!!!");
   board.innerHTML = "";
   createBoard();
+  createScoreTable();
 }
 
 function removeStyles() {
   const levelBtns = document.querySelectorAll(".level");
   levelBtns.forEach((btn) => btn.classList.remove("level-active"));
+}
+
+function createScoreTable() {
+  bestResults.innerHTML = "";
+  const arr = JSON.parse(localStorage.getItem("scoreArray"));
+  const key = "moves";
+  const sortedArr = arr.sort((moves1, moves2) =>
+    moves1[key] > moves2[key] ? 1 : -1
+  );
+
+  for (let i = 0; i < sortedArr.length; i++) {
+    let result = document.createElement("div");
+    result.innerHTML = `${i + 1}. You've solved the level: "${
+      sortedArr[i].level
+    }" in
+    ${sortedArr[i].moves} moves!`;
+    bestResults.appendChild(result);
+  }
 }
