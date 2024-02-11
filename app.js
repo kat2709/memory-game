@@ -203,7 +203,6 @@ function youWin() {
   const scoreObj = {};
   scoreObj.level = activeBtn.id;
   scoreObj.moves = moves;
-  console.log(scoreObj);
 
   if (scoreArray.length < 5) {
     scoreArray.push(scoreObj);

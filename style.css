@@ -433,9 +433,11 @@ h5 {
     margin-top: 0px;
   }
   .level-container {
+    height: 100vh;
     padding: 20px 10px;
   }
   .setting-container {
+    height: 100vh;
     padding: 20px 10px;
   }
   .setting-box {
