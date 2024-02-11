@@ -11,5 +11,5 @@
 
 ## Screenshots
 
-![](./screenshots/screen-memory1.PNG)
-![](./screenshots/screen-memory2.PNG)
+![](./screenshot/screen-memory1.PNG)
+![](./screenshot/screen-memory2.PNG)
