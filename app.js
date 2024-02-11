@@ -124,6 +124,8 @@ document.addEventListener("keydown", (e) => {
 
 // UTILS
 function createBoard() {
+  idArr = [];
+  chosenCardArr = [];
   sortArr.sort(() => 0.5 - Math.random());
   for (let i = 0; i < sortArr.length; i++) {
     const card = document.createElement("div");
