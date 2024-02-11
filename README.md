@@ -1,6 +1,6 @@
 # Memory Game
 
-[Link to the app](https://kat2709.github.io/nonograms-game)
+[Link to the app](https://kat2709.github.io/memory-game/)
 
 ### Built with
 
