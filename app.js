@@ -8,7 +8,7 @@ let style = "";
 let count = 0;
 let idArr = [];
 let chosenCardArr = [];
-let scoreArray = [];
+let scoreArrayMemory = [];
 const board = document.querySelector(".board");
 const moveCounter = document.getElementById("moves");
 const bestResults = document.querySelector(".results");
@@ -16,9 +16,9 @@ const scoreTable = document.querySelector(".score-table");
 const audio = document.querySelector("#audio");
 let moves = 0;
 
-let savedScore = localStorage.getItem("scoreArray");
+let savedScore = localStorage.getItem("scoreArrayMemory");
 if (savedScore) {
-  scoreArray = JSON.parse(savedScore);
+  scoreArrayMemory = JSON.parse(savedScore);
   scoreTable.classList.add("score-table-open");
 }
 
@@ -206,14 +206,14 @@ function youWin() {
   scoreObj.level = activeBtn.id;
   scoreObj.moves = moves;
 
-  if (scoreArray.length < 5) {
-    scoreArray.push(scoreObj);
+  if (scoreArrayMemory.length < 5) {
+    scoreArrayMemory.push(scoreObj);
   } else {
-    scoreArray.push(scoreObj);
-    scoreArray = scoreArray.slice(1);
+    scoreArrayMemory.push(scoreObj);
+    scoreArrayMemory = scoreArrayMemory.slice(1);
   }
 
-  localStorage.setItem("scoreArray", JSON.stringify(scoreArray));
+  localStorage.setItem("scoreArrayMemory", JSON.stringify(scoreArrayMemory));
   createEndGameWindow();
   board.innerHTML = "";
   createBoard();
@@ -228,7 +228,7 @@ function removeStyles() {
 function createScoreTable() {
   scoreTable.classList.add("score-table-open");
   bestResults.innerHTML = "";
-  const arr = JSON.parse(localStorage.getItem("scoreArray"));
+  const arr = JSON.parse(localStorage.getItem("scoreArrayMemory"));
   const key = "moves";
   const sortedArr = arr.sort((moves1, moves2) =>
     moves1[key] > moves2[key] ? 1 : -1
