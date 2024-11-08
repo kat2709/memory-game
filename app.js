@@ -111,7 +111,6 @@ soundBtn.addEventListener("click", () => {
   } else {
     note.classList.remove("active-note");
   }
-  // todo
 });
 
 document.addEventListener("keydown", (e) => {
